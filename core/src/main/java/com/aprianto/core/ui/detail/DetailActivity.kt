@@ -10,6 +10,7 @@ import com.aprianto.core.R
 import com.aprianto.core.databinding.ActivityDetailBinding
 import com.aprianto.core.domain.model.Menu
 import com.aprianto.core.ui.ViewModelFactory
+import com.aprianto.core.utils.UIHelper
 import com.bumptech.glide.Glide
 
 class DetailActivity : AppCompatActivity() {
@@ -49,6 +50,8 @@ class DetailActivity : AppCompatActivity() {
             setStatusFavorite(it.isFavorite)
             binding.btnAddFavorite.setOnClickListener { _ ->
                 viewModel.setFavoriteMenu(it, true)
+                setStatusFavorite(true)
+                UIHelper.showDialog(this, "Disimpan", "${it.productName} ditambahkan ke Favorit")
             }
             binding.btnRemoveFavorite.setOnClickListener { _ ->
                 SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE).apply {
@@ -59,15 +62,17 @@ class DetailActivity : AppCompatActivity() {
                     setCancelClickListener { dismiss() }
                     confirmText = "Hapus"
                     setConfirmClickListener { _ ->
-                        viewModel.setFavoriteMenu(
-                            it,
-                            false
-                        )
+                        viewModel.setFavoriteMenu(it, false)
+                        setStatusFavorite(false)
                         this.dismiss()
+                        UIHelper.showDialog(
+                            this@DetailActivity,
+                            "Dihapus",
+                            "${it.productName} dihapus dari Favorit"
+                        )
                     }
                     show()
                 }
-
             }
         }
     }

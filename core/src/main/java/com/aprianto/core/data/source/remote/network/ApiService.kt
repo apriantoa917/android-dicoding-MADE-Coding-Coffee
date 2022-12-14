@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface ApiService {
     @GET("menu.json?print=pretty")
-    fun getListMenu():  Call<List<MenuResponse>>
+    suspend fun getListMenu():  List<MenuResponse>
 }

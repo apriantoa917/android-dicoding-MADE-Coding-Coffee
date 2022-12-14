@@ -1,14 +1,13 @@
 package com.aprianto.core.data.source.remote
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.aprianto.core.data.source.remote.network.ApiResponse
 import com.aprianto.core.data.source.remote.network.ApiService
 import com.aprianto.core.data.source.remote.response.MenuResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 
 class RemoteDataSource private constructor(private val apiService: ApiService) {
     companion object {
@@ -21,27 +20,20 @@ class RemoteDataSource private constructor(private val apiService: ApiService) {
             }
     }
 
-    fun getAllMenu(): LiveData<ApiResponse<List<MenuResponse>>> {
-        val resultData = MutableLiveData<ApiResponse<List<MenuResponse>>>()
+    suspend fun getAllMenu(): Flow<ApiResponse<List<MenuResponse>>> {
 
-        //get data from remote api
-        val client = apiService.getListMenu()
-
-        client.enqueue(object : Callback<List<MenuResponse>> {
-            override fun onResponse(
-                call: Call<List<MenuResponse>>,
-                response: Response<List<MenuResponse>>
-            ) {
-                val dataArray = response.body()
-                resultData.value = if (dataArray != null) ApiResponse.Success(dataArray) else ApiResponse.Empty
-                /* TODO -> belum di casting hasil */
+        return flow {
+            try {
+                val response = apiService.getListMenu()
+                if (response.isNotEmpty()) {
+                    emit(ApiResponse.Success(response))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+                Log.e("RemoteDataSource", e.toString())
             }
-
-            override fun onFailure(call: Call<List<MenuResponse>>, t: Throwable) {
-                Log.e("RemoteDataSource", t.message.toString())
-            }
-        })
-
-        return resultData
+        }.flowOn(Dispatchers.IO)
     }
 }

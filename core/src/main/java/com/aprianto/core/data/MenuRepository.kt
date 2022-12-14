@@ -11,6 +11,8 @@ import com.aprianto.core.domain.model.Menu
 import com.aprianto.core.domain.repository.IMenuRepository
 import com.aprianto.core.utils.AppExecutors
 import com.aprianto.core.utils.DataMapper
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class MenuRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
@@ -32,31 +34,26 @@ class MenuRepository private constructor(
             }
     }
 
-    override fun getAllMenu(): LiveData<Resource<List<Menu>>> =
-        object : NetworkBoundResource<List<Menu>, List<MenuResponse>>(appExecutors) {
-            override fun loadFromDB(): LiveData<List<Menu>> {
-                return Transformations.map(localDataSource.getAllMenu()) {
-                    DataMapper.mapEntitiesToDomain(it)
-                }
+    override fun getAllMenu(): Flow<Resource<List<Menu>>> =
+        object : NetworkBoundResource<List<Menu>, List<MenuResponse>>() {
+            override fun loadFromDB(): Flow<List<Menu>> {
+                return localDataSource.getAllMenu().map { DataMapper.mapEntitiesToDomain(it) }
             }
 
             override fun shouldFetch(data: List<Menu>?): Boolean =
-//                data == null || data.isEmpty()
-                true // ganti dengan true jika ingin selalu mengambil data dari internet
+                data == null || data.isEmpty()
 
-            override fun createCall(): LiveData<ApiResponse<List<MenuResponse>>> =
+            override suspend fun createCall(): Flow<ApiResponse<List<MenuResponse>>> =
                 remoteDataSource.getAllMenu()
 
-            override fun saveCallResult(data: List<MenuResponse>) {
+            override suspend fun saveCallResult(data: List<MenuResponse>) {
                 val tourismList = DataMapper.mapResponsesToEntities(data)
                 localDataSource.insertMenu(tourismList)
             }
-        }.asLiveData()
+        }.asFlow()
 
-    override fun getFavoriteMenu(): LiveData<List<Menu>> {
-        return Transformations.map(localDataSource.getFavoriteMenu()) {
-            DataMapper.mapEntitiesToDomain(it)
-        }
+    override fun getFavoriteMenu(): Flow<List<Menu>> {
+        return localDataSource.getFavoriteMenu().map { DataMapper.mapEntitiesToDomain(it) }
     }
 
     override fun setFavoriteMenu(menu: Menu, isFavorite: Boolean) {

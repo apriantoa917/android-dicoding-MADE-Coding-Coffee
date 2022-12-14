@@ -4,11 +4,12 @@ import android.content.res.Resources
 import androidx.lifecycle.LiveData
 import com.aprianto.core.data.Resource
 import com.aprianto.core.domain.model.Menu
+import kotlinx.coroutines.flow.Flow
 
 interface IMenuRepository {
-    fun getAllMenu():LiveData<Resource<List<Menu>>>
+    fun getAllMenu():Flow<Resource<List<Menu>>>
 
-    fun getFavoriteMenu():LiveData<List<Menu>>
+    fun getFavoriteMenu():Flow<List<Menu>>
 
     fun setFavoriteMenu(menu: Menu, isFavorite:Boolean)
 }

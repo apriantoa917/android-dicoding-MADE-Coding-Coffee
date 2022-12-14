@@ -61,6 +61,7 @@ dependencies {
     implementation 'com.github.f0ris.sweetalert:library:1.5.6'
 
     /* coroutine flow */
+
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version"
     implementation "androidx.room:room-ktx:$room_version"

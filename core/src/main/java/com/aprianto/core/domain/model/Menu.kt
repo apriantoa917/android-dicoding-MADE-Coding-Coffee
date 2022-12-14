@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATED_ANNOTATION")
+
 package com.aprianto.core.domain.model
 
 import android.os.Parcelable

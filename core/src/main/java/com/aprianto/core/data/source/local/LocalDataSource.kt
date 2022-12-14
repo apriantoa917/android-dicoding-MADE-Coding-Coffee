@@ -3,6 +3,7 @@ package com.aprianto.core.data.source.local
 import androidx.lifecycle.LiveData
 import com.aprianto.core.data.source.local.entity.MenuEntity
 import com.aprianto.core.data.source.local.room.MenuDao
+import kotlinx.coroutines.flow.Flow
 
 class LocalDataSource private constructor(private val menuDao: MenuDao) {
 
@@ -15,11 +16,11 @@ class LocalDataSource private constructor(private val menuDao: MenuDao) {
             }
     }
 
-    fun getAllMenu(): LiveData<List<MenuEntity>> = menuDao.getAllMenu()
+    fun getAllMenu(): Flow<List<MenuEntity>> = menuDao.getAllMenu()
 
-    fun getFavoriteMenu(): LiveData<List<MenuEntity>> = menuDao.getFavoriteMenu()
+    fun getFavoriteMenu(): Flow<List<MenuEntity>> = menuDao.getFavoriteMenu()
 
-    fun insertMenu(menuList: List<MenuEntity>) = menuDao.insertMenu(menuList)
+    suspend fun insertMenu(menuList: List<MenuEntity>) = menuDao.insertMenu(menuList)
 
     fun setFavoriteMenu(menu: MenuEntity, newState: Boolean) {
         menu.isFavorite = newState
