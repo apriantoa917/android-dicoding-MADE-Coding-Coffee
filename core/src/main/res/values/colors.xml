@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand_color">#1F3933</color>
+    <color name="brand_colors">#478072</color>
+    <color name="light">#F5F1EE</color>
+    <color name="favorite">#F44336</color>
+    <color name="gray">#C8C8C8</color>
+    <color name="light_gray">#ECECEC</color>
+    <color name="dark_gray">#656565</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
+</resources>
