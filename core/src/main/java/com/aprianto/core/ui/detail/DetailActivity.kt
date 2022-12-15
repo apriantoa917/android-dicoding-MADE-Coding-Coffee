@@ -1,9 +1,8 @@
 package com.aprianto.core.ui.detail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.aprianto.core.databinding.ActivityDetailBinding
 import com.aprianto.core.domain.model.Menu
@@ -37,7 +36,7 @@ class DetailActivity : AppCompatActivity() {
             binding.tvPreviewProductName.text = it.productName
             binding.tvProductName.text = it.productName
             binding.labelProductCategory.tvProductCategory.text = it.productCategory
-            binding.tvProductPrice.text = it.productPrice.toString()
+            binding.tvProductPrice.text = UIHelper.castCustomRupiah(it.productPrice)
             binding.tvProductDescription.text = it.productDescription
             Glide.with(this)
                 .load(it.productImage)

@@ -1,9 +1,6 @@
 package com.aprianto.core.data
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import com.aprianto.core.data.source.remote.network.ApiResponse
-import com.aprianto.core.utils.AppExecutors
 import kotlinx.coroutines.flow.*
 
 abstract class NetworkBoundResource<ResultType, RequestType> {
@@ -22,7 +19,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
                 }
                 is ApiResponse.Error -> {
                     onFetchFailed()
-                    emit(Resource.Error<ResultType>(apiResponse.errorMessage))
+                    emit(Resource.Error(apiResponse.errorMessage))
                 }
             }
         } else {

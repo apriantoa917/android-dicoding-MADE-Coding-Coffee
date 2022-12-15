@@ -66,7 +66,12 @@ class HomeActivity : AppCompatActivity() {
 
         binding.btnFavorite.setOnClickListener {
             try {
-                startActivity(Intent(this, Class.forName("com.aprianto.favorite.ui.FavoriteActivity")))
+                startActivity(
+                    Intent(
+                        this,
+                        Class.forName("com.aprianto.favorite.ui.FavoriteActivity")
+                    )
+                )
             } catch (e: Exception) {
                 UIHelper.showDialog(
                     context = this,
@@ -76,6 +81,5 @@ class HomeActivity : AppCompatActivity() {
                 )
             }
         }
-
     }
 }

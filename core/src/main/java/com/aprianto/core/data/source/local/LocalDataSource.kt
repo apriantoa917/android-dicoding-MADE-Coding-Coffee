@@ -1,6 +1,5 @@
 package com.aprianto.core.data.source.local
 
-import androidx.lifecycle.LiveData
 import com.aprianto.core.data.source.local.entity.MenuEntity
 import com.aprianto.core.data.source.local.room.MenuDao
 import kotlinx.coroutines.flow.Flow

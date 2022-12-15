@@ -1,5 +1,6 @@
 package com.aprianto.core.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ class MenuRvAdapter : RecyclerView.Adapter<MenuRvAdapter.ListViewHolder>() {
     private var listData = ArrayList<Menu>()
     var onItemClick: ((Menu) -> Unit)? = null
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(newListData: List<Menu>?) {
         if (newListData == null) return
         listData.clear()

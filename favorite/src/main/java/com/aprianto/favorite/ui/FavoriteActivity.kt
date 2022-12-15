@@ -3,6 +3,7 @@ package com.aprianto.favorite.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import com.aprianto.core.ui.adapter.MenuRvAdapter
 import com.aprianto.core.ui.detail.DetailActivity
@@ -35,7 +36,14 @@ class FavoriteActivity : AppCompatActivity() {
         }
 
         viewModel.menu.observe(this@FavoriteActivity) { menu ->
-            adapter.setData(menu)
+            if (menu.isEmpty()) {
+                binding.tvEmptyFavorite.isVisible = true
+                binding.rvMenu.isVisible = false
+            } else {
+                binding.tvEmptyFavorite.isVisible = false
+                binding.rvMenu.isVisible = true
+                adapter.setData(menu)
+            }
         }
 
         with(binding.rvMenu) {
