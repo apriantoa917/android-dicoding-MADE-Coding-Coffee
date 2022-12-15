@@ -5,15 +5,10 @@ import com.aprianto.core.data.source.local.entity.MenuEntity
 import com.aprianto.core.data.source.local.room.MenuDao
 import kotlinx.coroutines.flow.Flow
 
-class LocalDataSource private constructor(private val menuDao: MenuDao) {
+class LocalDataSource(private val menuDao: MenuDao) {
 
     companion object {
         private var instance: LocalDataSource? = null
-
-        fun getInstance(menuDao: MenuDao): LocalDataSource =
-            instance ?: synchronized(this) {
-                instance ?: LocalDataSource(menuDao)
-            }
     }
 
     fun getAllMenu(): Flow<List<MenuEntity>> = menuDao.getAllMenu()

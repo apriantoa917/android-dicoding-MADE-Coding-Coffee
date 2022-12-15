@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.aprianto.core.data.Resource
 import com.aprianto.core.databinding.ActivityMainBinding
-import com.aprianto.core.ui.ViewModelFactory
 import com.aprianto.core.ui.adapter.MenuRvAdapter
 import com.aprianto.core.ui.detail.DetailActivity
 import com.aprianto.core.utils.UIHelper
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModel()
     private lateinit var binding: ActivityMainBinding
     private lateinit var loading: SweetAlertDialog
 
@@ -44,8 +44,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
-        val factory = ViewModelFactory.getInstance(this)
-        viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
         viewModel.menu.observe(this@MainActivity) { menu ->
             if (menu != null) {
@@ -69,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         with(binding.rvMenu) {
-            layoutManager = GridLayoutManager(context,2)
+            layoutManager = GridLayoutManager(context, 2)
             setHasFixedSize(true)
             this.adapter = adapter
         }

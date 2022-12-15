@@ -14,18 +14,5 @@ abstract class MenuDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: MenuDatabase? = null
-
-        fun getInstance(context: Context): MenuDatabase =
-            INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    MenuDatabase::class.java,
-                    "Tourism.db"
-                )
-                    .fallbackToDestructiveMigration()
-                    .build()
-                INSTANCE = instance
-                instance
-            }
     }
 }

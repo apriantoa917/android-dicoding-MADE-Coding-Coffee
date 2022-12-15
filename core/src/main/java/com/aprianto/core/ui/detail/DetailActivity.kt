@@ -2,16 +2,14 @@ package com.aprianto.core.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.aprianto.core.R
 import com.aprianto.core.databinding.ActivityDetailBinding
 import com.aprianto.core.domain.model.Menu
-import com.aprianto.core.ui.ViewModelFactory
 import com.aprianto.core.utils.UIHelper
 import com.bumptech.glide.Glide
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
 
@@ -19,16 +17,13 @@ class DetailActivity : AppCompatActivity() {
         const val EXTRA_PRODUCT_ID = "PRODUCT_ID"
     }
 
-    private lateinit var viewModel: DetailViewModel
+    private val viewModel: DetailViewModel by viewModel()
     private lateinit var binding: ActivityDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val factory = ViewModelFactory.getInstance(this)
-        viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
 
         val detailMenu = intent.getParcelableExtra<Menu>(EXTRA_PRODUCT_ID)
         showDetailMenu(detailMenu)

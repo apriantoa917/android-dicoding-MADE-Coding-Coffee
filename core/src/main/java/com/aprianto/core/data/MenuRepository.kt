@@ -14,7 +14,7 @@ import com.aprianto.core.utils.DataMapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class MenuRepository private constructor(
+class MenuRepository(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
@@ -23,15 +23,6 @@ class MenuRepository private constructor(
     companion object {
         @Volatile
         private var instance: MenuRepository? = null
-
-        fun getInstance(
-            remoteData: RemoteDataSource,
-            localData: LocalDataSource,
-            appExecutors: AppExecutors
-        ): MenuRepository =
-            instance ?: synchronized(this) {
-                instance ?: MenuRepository(remoteData, localData, appExecutors)
-            }
     }
 
     override fun getAllMenu(): Flow<Resource<List<Menu>>> =
