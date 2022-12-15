@@ -12,7 +12,9 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
-/* ini adalah sample perubahan untuk testing cirlce-CI */
+/* ini adalah sample perubahan untuk testing cirlce-CI
+* [updates] test setelah merge branch circle ci project setup dengan branch master
+*  */
 
 class MyApplication : Application() {
     override fun onCreate() {
