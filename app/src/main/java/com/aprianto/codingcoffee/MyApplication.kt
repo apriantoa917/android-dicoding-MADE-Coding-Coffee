@@ -12,6 +12,8 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
+/* ini adalah sample perubahan untuk testing cirlce-CI */
+
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
