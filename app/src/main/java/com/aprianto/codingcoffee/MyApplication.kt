@@ -14,6 +14,7 @@ import org.koin.core.logger.Level
 
 /* ini adalah sample perubahan untuk testing cirlce-CI
 * [updates] test setelah merge branch circle ci project setup dengan branch master
+* TODO : ikuti code lab Leak Canary
 *  */
 
 class MyApplication : Application() {

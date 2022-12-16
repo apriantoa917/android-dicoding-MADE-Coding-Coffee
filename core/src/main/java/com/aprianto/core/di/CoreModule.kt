@@ -8,6 +8,8 @@ import com.aprianto.core.data.source.remote.RemoteDataSource
 import com.aprianto.core.data.source.remote.network.ApiService
 import com.aprianto.core.domain.repository.IMenuRepository
 import com.aprianto.core.utils.AppExecutors
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -20,10 +22,12 @@ val databaseModule = module {
 
     factory { get<MenuDatabase>().menuDao() }
     single {
+        val passphrase: ByteArray = SQLiteDatabase.getBytes("dicoding".toCharArray())
+        val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
             MenuDatabase::class.java, "Menu.db"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration().openHelperFactory(factory).build()
     }
 }
 

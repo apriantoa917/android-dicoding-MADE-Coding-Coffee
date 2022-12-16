@@ -4,4 +4,6 @@
     <string name="sample_product_description">Latte adalah miniman kopi yang terbuat dari campuran kopi espresso dan susu kocok (steammed milk) dengan perbandingan komposisi espresso 1 : susu 2. Memiliki cita rasa manis dan kandungan kopi yang tidak terlalu pekat membuat tekstur latte ini bisa dikreasikan dengan seni gambar (latte art) yang dapat dikustomisasi oleh barista</string>
     <string name="sample_product_price">IDR 30.000</string>
     <string name="app_description">Melalui aplikasi ini kamu dapat melihat menu dari Coding Coffee yaitu sebuah Cafe Virtual. Disini juga kamu dapat menyukai menu untuk disimpan pada menu Favorit diatas</string>
+    <string name="power_connected">Power connected!</string>
+    <string name="power_disconnected">Power disconnected!</string>
 </resources>

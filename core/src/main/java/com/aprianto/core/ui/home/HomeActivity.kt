@@ -1,8 +1,8 @@
 package com.aprianto.core.ui.home
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.aprianto.core.data.Resource
@@ -17,7 +17,6 @@ class HomeActivity : AppCompatActivity() {
     private val viewModel: HomeViewModel by viewModel()
     private lateinit var binding: ActivityMainBinding
     private lateinit var loading: SweetAlertDialog
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,4 +81,5 @@ class HomeActivity : AppCompatActivity() {
             }
         }
     }
+
 }

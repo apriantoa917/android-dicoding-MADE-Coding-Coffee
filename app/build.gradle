@@ -44,4 +44,7 @@ dependencies {
     /* dependency injection */
     implementation "io.insert-koin:koin-core:$koin_version"
     implementation "io.insert-koin:koin-android:$koin_android_version"
+
+    /* leak canary */
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 }

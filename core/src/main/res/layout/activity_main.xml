@@ -62,6 +62,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/btn_favorite"
                 tools:layout_editor_absoluteX="20dp" />
 
+            <TextView
+                android:id="@+id/tv_leak_test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:letterSpacing="0.03"
+                android:lineHeight="20dp"
+                android:text="test"
+                android:padding="30dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toBottomOf="@+id/tv_app_description" />
+
             <ImageView
                 android:id="@+id/btn_favorite"
                 android:layout_width="84dp"
