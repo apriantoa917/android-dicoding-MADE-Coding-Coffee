@@ -2,6 +2,7 @@ package com.aprianto.core.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import cn.pedant.SweetAlert.SweetAlertDialog
@@ -77,6 +78,11 @@ class HomeActivity : AppCompatActivity() {
                     title = "Error",
                     message = e.message,
                     style = SweetAlertDialog.ERROR_TYPE
+                )
+                Log.e(
+                    "INTENT_MODULE_FAVORITE",
+                    "Error while open module FAVORITE : ${e.message}",
+                    e
                 )
             }
         }
