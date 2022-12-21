@@ -1,7 +1,6 @@
 package com.aprianto.core.data.source.remote.network
 
 import com.aprianto.core.data.source.remote.response.MenuResponse
-import retrofit2.Call
 import retrofit2.http.GET
 
 interface ApiService {

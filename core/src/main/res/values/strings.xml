@@ -1,9 +1,29 @@
 <resources>
     <string name="sample_product_name">Choco Chip Codingccino</string>
     <string name="sample_product_category">Hot Coffee</string>
-    <string name="sample_product_description">Latte adalah miniman kopi yang terbuat dari campuran kopi espresso dan susu kocok (steammed milk) dengan perbandingan komposisi espresso 1 : susu 2. Memiliki cita rasa manis dan kandungan kopi yang tidak terlalu pekat membuat tekstur latte ini bisa dikreasikan dengan seni gambar (latte art) yang dapat dikustomisasi oleh barista</string>
-    <string name="sample_product_price">IDR 30.000</string>
+    <string name="sample_product_description">Latte adalah minuman kopi yang terbuat dari campuran kopi espresso dan susu kocok (steammed milk) dengan perbandingan komposisi espresso 1 : susu 2. Memiliki cita rasa manis dan kandungan kopi yang tidak terlalu pekat membuat tekstur latte ini bisa dikreasikan dengan seni gambar (latte art) yang dapat dikustomisasi oleh barista</string>
+    <string name="sample_product_price">Rp30.000,00</string>
     <string name="app_description">Melalui aplikasi ini kamu dapat melihat menu dari Coding Coffee yaitu sebuah Cafe Virtual. Disini juga kamu dapat menyukai menu untuk disimpan pada menu Favorit diatas</string>
-    <string name="power_connected">Power connected!</string>
-    <string name="power_disconnected">Power disconnected!</string>
+    <string name="cd_iv_product_image">preview image of product</string>
+    <string name="cd_btn_sort">sort product properties</string>
+    <string name="action_save_to_favorite">Tambahkan ke Favorit</string>
+    <string name="action_saved_as_favorite">Disimpan sebagai Favorit</string>
+    <string name="apps_name">CODING COFFEE</string>
+    <string name="cd_btn_favorite">button favorite menu</string>
+    <string name="title_menu">Menu ☕</string>
+    <string name="title_saved">Disimpan</string>
+    <string name="info_menu_saved">%1$s ditambahkan ke Favorit</string>
+    <string name="title_remove_favorite">Hapus Favorite</string>
+    <string name="confirm_remove_favorite">Apakah anda akan menghapus menu ini dari Favorite?</string>
+    <string name="action_cancel">Batalkan</string>
+    <string name="action_remove">Hapus</string>
+    <string name="title_removed">Dihapus</string>
+    <string name="info_menu_removed">%1$s dihapus dari Favorit</string>
+    <string name="title_loading">Loading</string>
+    <string name="info_loading_text">Sedang memuat data</string>
+    <string name="title_sort">Urutkan menu :</string>
+    <string name="sort_menu_by_name">Nama Menu</string>
+    <string name="sort_menu_by_price_ASC">Harga Terendah</string>
+    <string name="sort_menu_by_price_DESC">Harga Tertinggi</string>
+    <string name="info_empty_favorite_menu">Kamu belum memiliki menu favorite. Silahkan melihat salah satu menu dan memilih tombol Tambahkan ke Favorit</string>
 </resources>

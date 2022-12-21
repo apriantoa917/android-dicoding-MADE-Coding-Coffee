@@ -39,6 +39,7 @@
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:layout_marginTop="8dp"
+                android:contentDescription="@string/cd_iv_product_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_back"
@@ -108,7 +109,7 @@
                 android:drawablePadding="16dp"
                 android:drawableTint="@color/favorite"
                 android:paddingHorizontal="20dp"
-                android:text="Tambahkan ke Favorit"
+                android:text="@string/action_save_to_favorite"
                 android:textAllCaps="false"
                 android:textColor="@color/favorite"
                 android:textSize="16sp"
@@ -128,7 +129,7 @@
                 android:drawablePadding="16dp"
                 android:drawableTint="@color/light"
                 android:paddingHorizontal="20dp"
-                android:text="Disimpan sebagai Favorit"
+                android:text="@string/action_saved_as_favorite"
                 android:textAllCaps="false"
                 android:textColor="@color/light"
                 android:textSize="16sp"
@@ -160,7 +161,8 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_remove_favorite" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_remove_favorite"
+                tools:targetApi="p" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

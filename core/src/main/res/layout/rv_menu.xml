@@ -8,8 +8,8 @@
     android:layout_marginBottom="16dp"
     android:background="@drawable/bg_rv_white"
     android:orientation="vertical"
-    app:cardElevation="12dp"
-    android:weightSum="100">
+    android:weightSum="100"
+    app:cardElevation="12dp">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_product_image"
@@ -18,8 +18,8 @@
         android:layout_weight="0"
         android:scaleType="centerCrop"
         app:shapeAppearanceOverlay="@style/roundedImageView.16t"
-        tools:srcCompat="@drawable/sample_image"
-        tools:ignore="InefficientWeight" />
+        tools:ignore="InefficientWeight"
+        tools:srcCompat="@drawable/sample_image" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,18 +32,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
+            android:layout_marginBottom="8dp"
             android:ellipsize="end"
             android:lines="1"
-            android:layout_marginBottom="8dp"
             android:maxLines="1"
             android:text="@string/sample_product_name"
             android:textColor="@color/brand_color"
             android:textSize="14sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/tv_product_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="@string/sample_product_price"
+            android:textColor="@color/red_btn_bg_color"
+            android:textSize="13sp" />
+
         <include
             android:id="@+id/label_product_category"
-            layout="@layout/vc_product_label"/>
+            layout="@layout/vc_product_label" />
 
 
     </LinearLayout>

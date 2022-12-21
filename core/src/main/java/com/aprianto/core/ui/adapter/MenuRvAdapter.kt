@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aprianto.core.R
 import com.aprianto.core.databinding.RvMenuBinding
 import com.aprianto.core.domain.model.Menu
+import com.aprianto.core.utils.UIHelper
 import com.bumptech.glide.Glide
 
 class MenuRvAdapter : RecyclerView.Adapter<MenuRvAdapter.ListViewHolder>() {
@@ -41,12 +42,14 @@ class MenuRvAdapter : RecyclerView.Adapter<MenuRvAdapter.ListViewHolder>() {
                     .load(data.productImage)
                     .into(ivProductImage)
                 tvProductName.text = data.productName
+                tvProductPrice.text = UIHelper.castCustomRupiah(data.productPrice)
                 labelProductCategory.tvProductCategory.text = data.productCategory
             }
         }
 
         init {
             binding.root.setOnClickListener {
+                @Suppress("DEPRECATION")
                 onItemClick?.invoke(listData[adapterPosition])
             }
         }

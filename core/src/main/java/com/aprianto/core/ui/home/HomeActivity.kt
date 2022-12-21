@@ -3,11 +3,14 @@ package com.aprianto.core.ui.home
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import cn.pedant.SweetAlert.SweetAlertDialog
+import com.aprianto.core.R
 import com.aprianto.core.data.Resource
 import com.aprianto.core.databinding.ActivityMainBinding
+import com.aprianto.core.domain.model.Menu
 import com.aprianto.core.ui.adapter.MenuRvAdapter
 import com.aprianto.core.ui.detail.DetailActivity
 import com.aprianto.core.utils.UIHelper
@@ -25,8 +28,8 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         loading = SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE).apply {
-            title = "Loading"
-            contentText = "Sedang memuat data"
+            title = getString(R.string.title_loading)
+            contentText = getString(R.string.info_loading_text)
             setCancelable(false)
         }
 
@@ -44,6 +47,10 @@ class HomeActivity : AppCompatActivity() {
                     is Resource.Success -> {
                         loading.dismiss()
                         adapter.setData(menu.data)
+
+                        binding.btnSort.setOnClickListener {
+                            sortMenu(menu.data, adapter)
+                        }
                     }
                     is Resource.Error -> {
                         UIHelper.showDialog(
@@ -86,6 +93,26 @@ class HomeActivity : AppCompatActivity() {
                 )
             }
         }
+    }
+
+    private fun sortMenu(menu: List<Menu>?, adapter: MenuRvAdapter) {
+        val alertdialogbuilder = AlertDialog.Builder(this)
+        alertdialogbuilder.setTitle(getString(R.string.title_sort))
+        val items = arrayOf(
+            getString(R.string.sort_menu_by_name),
+            getString(R.string.sort_menu_by_price_ASC),
+            getString(R.string.sort_menu_by_price_DESC),
+        )
+        alertdialogbuilder.setItems(
+            items
+        ) { _, index ->
+            when (index) {
+                0 -> adapter.setData(menu?.sortedBy { it.productName })
+                1 -> adapter.setData(menu?.sortedBy { it.productPrice })
+                2 -> adapter.setData(menu?.sortedByDescending { it.productPrice })
+            }
+        }
+        alertdialogbuilder.create().show()
     }
 
 }

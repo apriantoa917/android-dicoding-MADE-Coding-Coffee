@@ -1,5 +1,6 @@
 package com.aprianto.core.di
 
+import com.aprianto.core.BuildConfig
 import androidx.room.Room
 import com.aprianto.core.data.MenuRepository
 import com.aprianto.core.data.source.local.LocalDataSource
@@ -34,12 +35,16 @@ val databaseModule = module {
 
 val networkModule = module {
     single {
-        val hostname = "coding-coffee-default-rtdb.firebaseio.com"
         val certificatePinner = CertificatePinner.Builder()
-            .add(hostname, "sha256/bfVq6ANE2IVTazOGo/DQB0r3l6mHYdkugKqEjlCfT7s=")
+            .add(BuildConfig.API_HOST, BuildConfig.API_SSH)
             .build()
+        val loggingInterceptor = if (BuildConfig.DEBUG) {
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        } else {
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+        }
         OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(loggingInterceptor)
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
             .certificatePinner(certificatePinner)
@@ -47,7 +52,7 @@ val networkModule = module {
     }
     single {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://coding-coffee-default-rtdb.firebaseio.com/")
+            .baseUrl(BuildConfig.API_ENDPOINT)
             .addConverterFactory(GsonConverterFactory.create())
             .client(get())
             .build()
